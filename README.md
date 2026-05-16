@@ -114,7 +114,7 @@ After receiving a goal:
 # 🏗️ System Architecture
 
 <p align="center">
-  <img src="./public/system-design.png" width="100%" />
+  <img src="./system-design.png" width="100%" />
 </p>
 
 ---
@@ -122,7 +122,7 @@ After receiving a goal:
 # 🤖 Multi-Agent Architecture
 
 <p align="center">
-  <img src="./public/agent-architecture.png" width="100%" />
+  <img src="./agent-architecture.png" width="100%" />
 </p>
 
 ---
@@ -240,7 +240,7 @@ User: Build an AI SaaS CRM
 # 📊 Observability Dashboard
 
 <p align="center">
-  <img src="./public/observability-dashboard.png" width="100%" />
+  <img src="./observability-dashboard.png" width="100%" />
 </p>
 
 Tracks:
@@ -257,7 +257,7 @@ Tracks:
 # 🔒 Security Architecture
 
 <p align="center">
-  <img src="./public/security-architecture.png" width="100%" />
+  <img src="./security-architecture.png" width="100%" />
 </p>
 
 Security features:
@@ -284,7 +284,7 @@ Example logs:
 # 📡 Workflow Visualization
 
 <p align="center">
-  <img src="./public/workflow-dag.png" width="100%" />
+  <img src="./workflow-dag.png" width="100%" />
 </p>
 
 Features:
