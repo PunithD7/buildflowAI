@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+
+  backend:
+    build: ./backend
+    container_name: buildflow-backend
+
+    env_file:
+      - ./backend/.env
+
+    volumes:
+      - ./backend:/app
+      - ./backend/uploads:/app/uploads
+      - ./generated_projects:/app/generated_projects
+
+    environment:
+      - ENVIRONMENT=development
+      - REDIS_URL=redis://redis:6379
+      - DATABASE_URL=sqlite+aiosqlite:///./buildflow.db
+
+    ports:
+      - "8000:8000"
+
+    depends_on:
+      - redis
+
+    networks:
+      - buildflow-net
+
+  frontend:
+    build: ./frontend
+    container_name: buildflow-frontend
+
+    ports:
+      - "5173:5173"
+
+    environment:
+      - VITE_API_URL=http://localhost:8000/api/v1
+      - VITE_WS_URL=ws://localhost:8000
+
+    depends_on:
+      - backend
+
+    networks:
+      - buildflow-net
+
+  redis:
+    image: redis:7-alpine
+    container_name: buildflow-redis
+
+    ports:
+      - "6379:6379"
+
+    networks:
+      - buildflow-net
+
+networks:
+  buildflow-net:
+    driver: bridge

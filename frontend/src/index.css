@@ -1,0 +1,435 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   CSS VARIABLES - BuildFlow Design System
+   ============================================================ */
+:root {
+  --bg-primary: #060d1a;
+  --bg-secondary: #0f172a;
+  --bg-card: rgba(15, 23, 42, 0.8);
+  --bg-card-hover: rgba(30, 41, 59, 0.9);
+  --border-subtle: rgba(99, 102, 241, 0.15);
+  --border-active: rgba(99, 102, 241, 0.4);
+  --glow-brand: rgba(99, 102, 241, 0.3);
+  --glow-cyber: rgba(20, 184, 166, 0.3);
+  --glow-success: rgba(34, 197, 94, 0.3);
+  --glow-danger: rgba(239, 68, 68, 0.3);
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+}
+
+/* ============================================================
+   GLOBAL RESETS & BASE
+   ============================================================ */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Inter', system-ui, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.5);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.4);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(99, 102, 241, 0.7);
+}
+
+/* ============================================================
+   GLASSMORPHISM COMPONENTS
+   ============================================================ */
+.glass {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(99, 102, 241, 0.15);
+}
+
+.glass-card {
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(99, 102, 241, 0.12);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  border-color: rgba(99, 102, 241, 0.3);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(99, 102, 241, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
+}
+
+/* ============================================================
+   ANIMATED CYBER GRID BACKGROUND
+   ============================================================ */
+.cyber-bg {
+  background-color: var(--bg-primary);
+  background-image: 
+    linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  position: relative;
+}
+
+.cyber-bg::before {
+  content: '';
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(ellipse at 50% 50%, rgba(99, 102, 241, 0.06) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ============================================================
+   GLOW EFFECTS
+   ============================================================ */
+.glow-brand {
+  box-shadow: 0 0 20px var(--glow-brand), 0 0 40px rgba(99, 102, 241, 0.1);
+}
+
+.glow-cyber {
+  box-shadow: 0 0 20px var(--glow-cyber), 0 0 40px rgba(20, 184, 166, 0.1);
+}
+
+.glow-success {
+  box-shadow: 0 0 20px var(--glow-success);
+}
+
+.glow-danger {
+  box-shadow: 0 0 20px var(--glow-danger);
+}
+
+.text-glow {
+  text-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+}
+
+.text-glow-cyber {
+  text-shadow: 0 0 20px rgba(20, 184, 166, 0.5);
+}
+
+/* ============================================================
+   GRADIENT TEXT
+   ============================================================ */
+.gradient-text {
+  background: linear-gradient(135deg, #818efb 0%, #6366f1 40%, #14b8a6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-cyber {
+  background: linear-gradient(135deg, #5eead4 0%, #14b8a6 50%, #6366f1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn-primary {
+  @apply inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm
+    bg-gradient-to-r from-brand-600 to-brand-500
+    text-white border border-brand-400/30
+    transition-all duration-200 cursor-pointer
+    hover:from-brand-500 hover:to-brand-400
+    hover:shadow-glow hover:-translate-y-0.5
+    active:translate-y-0 active:shadow-none;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm
+    bg-dark-800/80 text-dark-200 border border-dark-700
+    transition-all duration-200 cursor-pointer
+    hover:bg-dark-700 hover:border-brand-500/40 hover:text-white
+    active:scale-95;
+}
+
+.btn-cyber {
+  @apply inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm
+    bg-gradient-to-r from-cyber-600 to-cyber-500
+    text-white border border-cyber-400/30
+    transition-all duration-200 cursor-pointer
+    hover:from-cyber-500 hover:to-cyber-400
+    hover:shadow-glow-cyber hover:-translate-y-0.5;
+}
+
+.btn-danger {
+  @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm
+    bg-danger-600/20 text-danger-400 border border-danger-600/30
+    transition-all duration-200 cursor-pointer
+    hover:bg-danger-600/40 hover:border-danger-500/60;
+}
+
+/* ============================================================
+   STATUS BADGES
+   ============================================================ */
+.badge {
+  @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold;
+}
+
+.badge-running {
+  @apply badge bg-brand-500/20 text-brand-300 border border-brand-500/30;
+}
+
+.badge-completed {
+  @apply badge bg-success-500/20 text-success-400 border border-success-500/30;
+}
+
+.badge-failed {
+  @apply badge bg-danger-500/20 text-danger-400 border border-danger-500/30;
+}
+
+.badge-pending {
+  @apply badge bg-dark-700/60 text-dark-300 border border-dark-600;
+}
+
+.badge-warning {
+  @apply badge bg-warning-500/20 text-warning-400 border border-warning-500/30;
+}
+
+/* ============================================================
+   AGENT STATUS INDICATORS
+   ============================================================ */
+.agent-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.agent-dot-running {
+  background: #818efb;
+  box-shadow: 0 0 8px rgba(99, 102, 241, 0.8);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.agent-dot-completed {
+  background: #4ade80;
+  box-shadow: 0 0 6px rgba(74, 222, 128, 0.6);
+}
+
+.agent-dot-failed {
+  background: #f87171;
+  box-shadow: 0 0 6px rgba(248, 113, 113, 0.6);
+}
+
+.agent-dot-idle {
+  background: #475569;
+}
+
+/* ============================================================
+   TERMINAL / LOG VIEWER
+   ============================================================ */
+.terminal {
+  background: #050d1a;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 12px;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  overflow: hidden;
+}
+
+.terminal-header {
+  background: rgba(99, 102, 241, 0.1);
+  border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.terminal-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.terminal-body {
+  padding: 16px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.log-line {
+  display: flex;
+  gap: 8px;
+  padding: 2px 0;
+  align-items: flex-start;
+}
+
+.log-time {
+  color: #475569;
+  flex-shrink: 0;
+  font-size: 0.7rem;
+  margin-top: 2px;
+}
+
+.log-level-info { color: #818efb; }
+.log-level-success { color: #4ade80; }
+.log-level-warning { color: #fb923c; }
+.log-level-error { color: #f87171; }
+.log-level-debug { color: #64748b; }
+
+/* ============================================================
+   WORKFLOW PROGRESS
+   ============================================================ */
+.progress-track {
+  background: rgba(30, 41, 59, 0.8);
+  border-radius: 9999px;
+  height: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #6366f1 0%, #14b8a6 100%);
+  transition: width 0.5s ease;
+  position: relative;
+}
+
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  animation: shimmer 2s linear infinite;
+}
+
+/* ============================================================
+   INPUT STYLES
+   ============================================================ */
+.input-field {
+  @apply w-full bg-dark-900/80 border border-dark-700 rounded-xl px-4 py-3
+    text-dark-100 placeholder-dark-500 text-sm
+    focus:outline-none focus:border-brand-500/60 focus:ring-1 focus:ring-brand-500/30
+    transition-all duration-200;
+}
+
+.textarea-field {
+  @apply w-full bg-dark-900/80 border border-dark-700 rounded-xl px-4 py-3
+    text-dark-100 placeholder-dark-500 text-sm resize-none
+    focus:outline-none focus:border-brand-500/60 focus:ring-1 focus:ring-brand-500/30
+    transition-all duration-200;
+}
+
+/* ============================================================
+   SIDEBAR
+   ============================================================ */
+.sidebar-item {
+  @apply flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm
+    text-dark-400 cursor-pointer transition-all duration-200
+    hover:text-white hover:bg-dark-800/80;
+}
+
+.sidebar-item-active {
+  @apply sidebar-item text-brand-300 bg-brand-500/10 border border-brand-500/20;
+}
+
+/* ============================================================
+   CARD VARIANTS
+   ============================================================ */
+.metric-card {
+  @apply glass-card p-5 flex flex-col gap-3;
+}
+
+.output-section {
+  @apply glass-card p-6 mb-4;
+}
+
+/* ============================================================
+   REACT FLOW CUSTOMIZATIONS
+   ============================================================ */
+.react-flow__node-custom {
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: 12px;
+  padding: 12px 16px;
+  color: #f1f5f9;
+  font-size: 0.75rem;
+  min-width: 140px;
+  text-align: center;
+  backdrop-filter: blur(12px);
+}
+
+.react-flow__edge-path {
+  stroke: rgba(99, 102, 241, 0.5);
+  stroke-width: 2;
+}
+
+.react-flow__background {
+  background-color: transparent;
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+.animate-scanline {
+  animation: scanline 8s linear infinite;
+}
+
+/* Loading skeleton */
+.skeleton {
+  background: linear-gradient(90deg, rgba(30, 41, 59, 0.8) 0%, rgba(51, 65, 85, 0.8) 50%, rgba(30, 41, 59, 0.8) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s linear infinite;
+  border-radius: 8px;
+}
+
+/* Typing cursor effect */
+.typing-cursor::after {
+  content: '|';
+  animation: blink 1s step-end infinite;
+  color: #6366f1;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
