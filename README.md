@@ -2,7 +2,7 @@
 ## Secure Autonomous Multi-Agent Execution Platform
 
 <p align="center">
-  <img src="./public/banner.png" alt="BuildFlow Banner" width="100%" />
+  <img src="./banner.png" alt="BuildFlow Banner" width="100%" />
 </p>
 
 <p align="center">
